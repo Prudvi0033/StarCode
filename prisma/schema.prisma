@@ -8,9 +8,9 @@ datasource db {
 }
 
 model User {
-  id String @id @default(uuid())
+  id       String @id @default(uuid())
+  email    String @unique
   username String @unique
-  profilePicture String?
   createdAt DateTime @default(now())
 
   codeSnippets CodeSnippets[]
