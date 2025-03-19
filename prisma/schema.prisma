@@ -1,0 +1,56 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id String @id @default(uuid())
+  username String @unique
+  profilePicture String?
+  createdAt DateTime @default(now())
+
+  codeSnippets CodeSnippets[]
+  comments Comments[]
+  stars Stars[]
+}
+
+model CodeSnippets {
+  id String @id @default(uuid())
+  userId String 
+  username String
+  title String
+  code String
+  language String
+  visibility String // "public" or "private"
+  starsCount Int @default(0) 
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  comments Comments[]
+  stars Stars[] 
+}
+
+model Comments {
+  id String @id  @default(uuid())
+  userId String 
+  snippetId String  
+  content String 
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  snippet CodeSnippets @relation(fields: [snippetId], references: [id], onDelete: Cascade)
+}
+
+model Stars {
+  id String @id @default(uuid())
+  userId String 
+  snippetId String 
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  snippet CodeSnippets @relation(fields: [snippetId], references: [id], onDelete: Cascade)
+}
