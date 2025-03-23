@@ -1,5 +1,5 @@
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import { prisma } from "@/app/lib/db";
+import { prisma } from "@/lib/db";
 import GoogleProvider from "next-auth/providers/google";
 import { NextAuthOptions, Session, User } from "next-auth";
 
@@ -46,8 +46,9 @@ export const authOptions: NextAuthOptions = {
       return session;
     },
   },
-  secret: process.env.NEXTAUTH_SECRET,
   session: {
     strategy: "jwt",
+    maxAge : 30 * 24 * 60 * 60
   },
+  secret: process.env.NEXTAUTH_SECRET,
 };
