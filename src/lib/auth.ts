@@ -9,6 +9,7 @@ export const authOptions: NextAuthOptions = {
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+      allowDangerousEmailAccountLinking: true
     }),
   ],
   callbacks: {
@@ -33,22 +34,33 @@ export const authOptions: NextAuthOptions = {
       return true;
     },
 
-    async session({ session }: { session: Session}): Promise<Session> {
-      if (session?.user?.email) {
-        const dbUser = await prisma.user.findUnique({
-          where: { email: session.user.email },
-        });
+    async session({ session, token }: { session: Session; token: any }): Promise<Session> {
+      if (session?.user) {
+        session.user.id = token.sub; // Add the user ID from the JWT token
 
-        if (dbUser) {
-          session.user.username = dbUser.username;
+        if (session.user.email) {
+          const dbUser = await prisma.user.findUnique({
+            where: { email: session.user.email },
+          });
+
+          if (dbUser) {
+            session.user.username = dbUser.username;
+          }
         }
       }
       return session;
     },
+    
+    async jwt({ token, user }: { token: any; user?: User }): Promise<any> {
+      if (user) {
+        token.sub = user.id;
+      }
+      return token;
+    }
   },
   session: {
     strategy: "jwt",
-    maxAge : 30 * 24 * 60 * 60
+    maxAge: 30 * 24 * 60 * 60
   },
   secret: process.env.NEXTAUTH_SECRET,
 };
