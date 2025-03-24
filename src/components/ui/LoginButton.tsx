@@ -12,7 +12,7 @@ export default function LoginButton({ callbackUrl = "/" }) {
 
   return (
     <Button
-      className="bg-white cursor-pointer text-black hover:bg-zinc-100/90 transition-all duration-300"
+      className="bg-black/60 cursor-pointer text-neutral-300 hover:bg-black/70 transition-all duration-300"
       onClick={() => signIn("google", { callbackUrl })}
     >
       <div className={`flex items-center justify-center ${bolde.className}`}>

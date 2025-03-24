@@ -1,8 +1,6 @@
 "use client"
 
 import { signOut, useSession } from "next-auth/react"
-import Image from "next/image"
-import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -26,10 +24,10 @@ export default function UserMenu() {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="relative h-8 w-8 rounded-full">
-          <Avatar className="h-8 w-8">
+          <Avatar className="h-10 w-10 cursor-pointer">
             <AvatarImage src={session.user.image || ""} alt={session.user.username} />
             <AvatarFallback className=" bg-gradient-to-br from-blue-800 to-slate-900">
-              <UserRound className="h-4 w-4 text-blue-200" />
+              <UserRound size={30} className=" text-blue-200" />
             </AvatarFallback>
           </Avatar>
         </Button>

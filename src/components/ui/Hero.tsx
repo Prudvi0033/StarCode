@@ -3,6 +3,7 @@
 import { LibraryBig, Star } from "lucide-react"
 import { motion } from "framer-motion"
 import React from "react"
+import CodeButton from "./CodeButton"
 
 const Hero = () => {
     return (
@@ -51,6 +52,7 @@ const Hero = () => {
                 {/* Title */}
                 <h1 className="text-neutral-200 text-5xl z-10">Effortless Coding, Smarter Snippets</h1>
                 <p className="text-neutral-300 text-md text-center w-[45rem] mt-3">Write, compile, and store code effortlessly with an AI-powered editor. Summarize snippets instantly and enhance your coding workflow!</p>
+                <CodeButton/>
             </div>
         </div>
     )

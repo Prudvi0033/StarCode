@@ -1,3 +1,4 @@
+import Features from "@/components/ui/Features"
 import Hero from "@/components/ui/Hero"
 import NavBar from "@/components/ui/Navbar"
 import {Montserrat} from "next/font/google"
@@ -11,6 +12,7 @@ export default function HomePage() {
       <main className={`container py-10 ${monte.className}`}>
         <Hero/>
       </main>
+      <Features/>
     </div>
   )
 }
