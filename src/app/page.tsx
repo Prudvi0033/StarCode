@@ -1,23 +1,16 @@
-'use client'
-import React from 'react'
-import { useSession } from 'next-auth/react'
+import Hero from "@/components/ui/Hero"
+import NavBar from "@/components/ui/Navbar"
+import {Montserrat} from "next/font/google"
 
-const page = () => {
-  const {data: session, status} = useSession()
-  if (status === "loading") {
-    return <p>Loading...</p>
-  }
-  
-  if (!session) {
-    return <p>You must be signed in to view this page</p>
-  }
-  
+const monte = Montserrat({ subsets : ['latin']})
+
+export default function HomePage() {
   return (
-    <div>
-      <h1>Welcome, {session.user.username}!</h1>
-      <p>Your user ID is: {session.user.id}</p>
+    <div className="min-h-screen bg-gradient-to-b from-blue-900/95 to-black">
+      <NavBar />
+      <main className={`container py-10 ${monte.className}`}>
+        <Hero/>
+      </main>
     </div>
   )
 }
-
-export default page
