@@ -7,12 +7,14 @@ import SaveSnippet from "./SaveSnippet"
 import { Editor } from "@monaco-editor/react"
 import FontSize from "./FontSize"
 import { Montserrat } from 'next/font/google'
+import Image from "next/image"
+import Link from "next/link"
 
 const monte = Montserrat({ subsets: ['latin'] })
 
 const EditorPanel: React.FC = () => {
   const [selectedLanguage, setSelectedLanguage] = useState<string>("javascript")
-  const [code, setCode] = useState<string>("console.log('Hello, World!');")
+  const [code, setCode] = useState<string>(`// Sample code for JavaScript\nfunction greet() {\n    console.log("Hello, World!");\n}\n\ngreet();`)
   const [fontSize, setFontSize] = useState<number>(14)
 
   // Function to handle language change and update sample code
@@ -25,11 +27,14 @@ const EditorPanel: React.FC = () => {
     <div className="w-full h-screen border-r border-neutral-400">
 
       <div className="flex items-center justify-between p-6 border-b border-neutral-600">
-        <div className="flex gap-4">
-          <LanguageSelector selectedLanguage={selectedLanguage} onChange={handleLanguageChange} />
-          <FontSize fontValue={fontSize} onFontChange={setFontSize} />
+        <div className={`flex gap-4 items-center ${monte.className}`}>
+          <Link href={"/"}>
+            <Image src={"./StarCode.svg"} alt="image" width={120} height={120} />
+          </Link>
         </div>
         <div className={`flex gap-2 ${monte.className}`}>
+          <LanguageSelector selectedLanguage={selectedLanguage} onChange={handleLanguageChange} />
+          <FontSize fontValue={fontSize} onFontChange={setFontSize} />
           <RunButton />
           <SaveSnippet />
         </div>

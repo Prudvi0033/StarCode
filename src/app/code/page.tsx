@@ -14,7 +14,7 @@ const Page = () => {
 
 
   if (status === "loading") {
-    return <div className='flex items-center justify-center h-screen bg-gradient-to-b from-blue-900/95 to-black'><Loader2 size={50} className='animate-spin text-white' /></div> 
+    return <div className='flex items-center justify-center h-screen bg-zinc-900'><Loader2 size={50} className='animate-spin text-white' /></div> 
   }
 
   return (

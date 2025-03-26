@@ -20,11 +20,15 @@ const languages: Language[] = [
 ]
 
 const sampleSnippets: Record<string, string> = {
-  c: `#include <stdio.h>\nint main() {\n    printf("Hello, World!");\n    return 0;\n}`,
-  cpp: `#include <iostream>\nusing namespace std;\nint main() {\n    cout << "Hello, World!";\n    return 0;\n}`,
-  java: `public class Main {\n    public static void main(String[] args) {\n        System.out.println("Hello, World!");\n    }\n}`,
-  javascript: `console.log("Hello, World!");`,
-  typescript: `const greet = (name: string): void => {\n    console.log(\`Hello, \${name}!\`);\n};\ngreet("World");`,
+  c: `// Sample code for C\n#include <stdio.h>\n\nvoid greet() {\n    printf("Hello, World!\\n");\n}\n\nint main() {\n    greet();\n    return 0;\n}`,
+  
+  cpp: `// Sample code for C++\n#include <iostream>\nusing namespace std;\n\nvoid greet() {\n    cout << "Hello, World!" << endl;\n}\n\nint main() {\n    greet();\n    return 0;\n}`,
+  
+  java: `// Sample code for Java\npublic class Main {\n    public static void greet() {\n        System.out.println("Hello, World!");\n    }\n    public static void main(String[] args) {\n        greet();\n    }\n}`,
+  
+  javascript: `// Sample code for JavaScript\nfunction greet() {\n    console.log("Hello, World!");\n}\n\ngreet();`,
+  
+  typescript: `// Sample code for TypeScript\ntype User = { name: string, age: number };\n\nconst greet = (user: User): void => {\n    console.log(\`Hello, \${user.name}, age \${user.age}!\`);\n};\n\ngreet({ name: "John", age: 25 });`,
 }
 
 interface LanguageSelectorProps {
