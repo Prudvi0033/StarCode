@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import { Inter, Source_Code_Pro } from "next/font/google"; // ✅ Corrected fonts
+import { Inter, Source_Code_Pro } from "next/font/google"; 
 import "./globals.css";
 import AuthProvider from "@/providers/session-provider";
+import {Toaster} from 'react-hot-toast'
 
 const inter = Inter({
   variable: "--font-geist-sans",
@@ -33,6 +34,7 @@ export default function RootLayout({
       >
         <AuthProvider>
           {children}
+          <Toaster/>
         </AuthProvider>
       </body>
     </html>

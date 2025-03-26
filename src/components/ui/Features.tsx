@@ -38,9 +38,9 @@ export default function FeatureHighlight() {
               transition: { duration: 0.2 }
             }}
             className={`relative w-48 h-60 md:w-60 md:h-70 rounded-3xl border border-blue-700/50 backdrop-blur-sm shadow-lg shadow-blue-900/30
-                       ${index === 0 ? 'origin-right z-0 md:-rotate-12 left-4': 
+                       ${index === 0 ? 'origin-right z-0 md:-rotate-12 md:left-4': 
                          index === 1 ? 'z-10' : 
-                         'origin-left z-0 md:rotate-12 right-4'}
+                         'origin-left z-0 md:rotate-12 md:right-4'}
                        drop-shadow-md`}
           >
             <div className="absolute inset-0 bg-gradient-to-br from-blue-900/90 to-blue-700/90 rounded-3xl" />
