@@ -1,8 +1,13 @@
 "use client"
 import { useSession } from 'next-auth/react'
+import { Montserrat } from 'next/font/google'
 
 import { Loader2 } from 'lucide-react'
 import NavBar from '@/components/ui/Navbar'
+import EditorPanel from './_components/EditorPanel'
+import OutputPanel from './_components/OutputPanel'
+
+const monte = Montserrat({subsets : ['latin']})
 
 const Page = () => {
   const { data: session, status } = useSession()
@@ -13,8 +18,12 @@ const Page = () => {
   }
 
   return (
-    <div className='bg-gradient-to-b from-blue-900/95 to-black h-screen'>
+    <div className='bg-gradient-to-b from-blue-900/95 to-black h-screen overflow-hidden'>
       <NavBar/>
+      <div className='grid md:grid-cols-2 grid-cols-1 bg-gradient-to-r from-neutral-800 via-neutral-700 to-neutral-800'>
+        <div><EditorPanel/></div>
+        <div className={`overflow-y-auto ${monte.className}`}><OutputPanel/></div>
+      </div>
     </div>
   )
 }
